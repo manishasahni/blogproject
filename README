@@ -1,0 +1,2 @@
+Description:
+    Simple blog application written on Django hosted on Apache with wsgi. Data is stored in Postgresql database.
