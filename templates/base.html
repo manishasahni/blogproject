@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>{% block title %}Blog Project{% endblock %}</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>Blog Project</td>
+        <td>
+          {% if user.is_authenticated %}
+            Welcome <a href="/accounts/profile/">{{ user.username }}</a> | 
+	<a href="/accounts/logout/">Sign Out</a>
+          {% else %}
+            <a href="/accounts/login/">Sign In</a>
+          {% endif %} 
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td><a href="/articles/">Home</a></td>
+        <td><a href="/accounts/profile/">Profile</a></td>
+      </tr>
+    </table>
+    {% block content %}{% endblock %}
+  </body>  
+</html>

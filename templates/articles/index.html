@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Article List{% endblock %}
+
+{% block content %}
+  <table>
+    <tr>
+      <th>Articles</th>
+      <th><a href="/articles/add/">New Article</a></th>
+    <tr>
+  </table>
+  {% if article_list %}
+    <table>
+    {% for article in article_list.object_list %}
+      <tr>
+       <td> 
+         <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </table>
+    <div class="pagination">
+      <span class="step-links">
+      {% if article_list.has_previous %}
+        <a href="?page={{ article_list.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+        Page {{ article_list.number }} of {{ article_list.paginator.num_pages }}.
+      </span>
+
+      {% if article_list.has_next %}
+        <a href="?page={{ article_list.next_page_number }}">next</a>
+      {% endif %}
+      </span>
+    </div>
+  {% else %}
+    <p>No articles available.</p>
+  {% endif %}
+{% endblock %}

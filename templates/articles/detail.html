@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Article Details{% endblock %}
+
+{% block content %}
+  <h2>{{ article.title }}</h2>
+  By <a href="/accounts/profile/">{{ article.user.username }}</a> / {{ article.pub_date }} / 
+					{{ total_comments }} comments
+  <br/>
+  {{ article.body|escape|linebreaks }}
+  <hr />
+  <h3>Comments</h3>
+  <form action="/comments/add/" method="post">{% csrf_token %}
+    {{ form.non_field_errors }}
+    <table>
+      {% if not user.is_authenticated %}
+        <tr>
+          <td colspan="2">{{ form.name.errors }}</td>
+        </tr>
+        <tr>
+          <td>Name:</td>
+          <td>{{ form.name }}</td>
+        </tr>
+      {% endif %}
+      <tr>
+        <td colspan="2">{{ form.comment_body.errors }}</td>
+      </tr>
+      <tr>
+        <td>Comment:</td>
+        <td>{{ form.comment_body }}</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="hidden" name="article" value={{ article.id }} />
+          <input type="hidden" name="slug" value={{ article.slug }} />
+          <input type="submit" value="Post Comment" />
+        </td>
+      </tr>
+    </table>
+  </ form>
+  <br /><hr/>
+  {% for comment in comment_list %}
+    {% ifequal comment.name '' %}
+      {{ comment.user.username }}
+    {% else %}
+      {{ comment.name }}
+    {% endifequal %}  
+   on {{ comment.com_date }} said:<br />
+    {{ comment.comment_body|escape|linebreaks }}
+    {% ifequal comment.user.username user.username %}
+      <br/><a href="/comments/delete/{{ comment.id }}/">Delete</a>
+    {% endifequal %}
+    <hr />  
+  {% endfor %}
+{% endblock %}
