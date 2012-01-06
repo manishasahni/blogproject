@@ -1,2 +1,9 @@
 Description:
     Simple blog application written on Django hosted on Apache with wsgi. Data is stored in Postgresql database.
+
+Instructions:
+    1. Replace apache's conf file with httpd.conf in the root directory.
+    2. Replace directory path in the following files with the appropriate path:
+        ./apache/django.wsgi
+        ./httpd.conf
+        ./settings.py
