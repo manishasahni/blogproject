@@ -4,20 +4,22 @@
 
 {% block content %}
   <h2>Profile</h2>
-  Username: {{ user }}
-  <table>
-    <tr>
-      <th>Articles</th>
-      <th><a href="/articles/add/">new article</a></th>
-    </tr>
-  </table>
-  <table>
+  <div class="item">Username: {{ user }}</div>
+  <br />
+  <h2>Articles
+    <div class="add">
+      <a href="/articles/add/">New Article</a>
+    </div>
+  </h2>
   {% for article in article_list %}
-    <tr>
-      <td><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></td>
-      <td><a href="/articles/edit/{{ article.id }}/">Edit</a></td>
-      <td><a href="/articles/delete/{{ article.id }}/">Delete</a></td>
-    </tr>
+    <div class="item">
+      <a href="{{ article.get_absolute_url }}">{{ article.title }}
+      <p class="italics">
+        <a href="/articles/edit/{{ article.id }}/">Edit</a> | 
+        <a href="/articles/delete/{{ article.id }}/">Delete</a>
+      </p>
+    </div>
+    <br />
   {% endfor %}
-  </table>
+
 {% endblock %}

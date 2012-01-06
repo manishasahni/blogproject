@@ -1,27 +1,125 @@
 <html>
   <head>
     <title>{% block title %}Blog Project{% endblock %}</title>
+    <style type="text/css">
+      .topbar
+      {
+        background-color:LightSlateGrey;
+      }
+      .main-content
+      {
+        margin-right:200px;
+        margin-left:200px;
+        padding-left:25px;
+        padding-right:25px;
+      }
+      body
+      {
+        background-color:LightYellow;
+        font-size:20px;
+      }
+      h1
+      {
+        color:White;
+        text-align:center;
+        font-family:"Times New Roman, Times, serif;
+        font-size:40px;
+        padding-top:10px;
+        padding-bottom:10px;        
+      }
+      a:link
+      {
+        text-decoration:none;
+      }
+      a:visited
+      {
+        color:Blue;
+        text-decoration:none;
+      }
+      .login
+      {
+        text-align:right;
+      }
+      .tab
+      { 
+        float:left;
+        border-style:solid solid none solid;
+        border-color:DarkBlue;
+        padding-top:8px;
+        padding-left:8px;
+        padding-right:8px;
+        padding-bottom:8px;
+        background-color:GhostWhite;
+      }
+      .content
+      {
+        border-style:solid;
+        border-color:DarkBlue;
+        padding-left:20px;  
+        padding-right:20px;  
+      }
+      h2
+      {
+        font-size:30px;
+        color:DarkBlue;
+       }
+      h3
+      {
+        font-size:20px;
+        color:DarkBlue;
+       }
+      .add
+      {
+        float:right;
+        outline-style:solid;
+        outline-color:Gainsboro;
+        outline-width:thin;
+        background-color:GhostWhite;
+        font-size:20px;
+        padding-left:12px;
+        padding-right:12px;
+      }
+      .item
+      {
+        outline-style:solid;
+        outline-color:Gainsboro;
+        outline-width:thin;
+        background-color:GhostWhite;
+        padding:12px 12px 12px 12px;
+      }
+      .italics
+      {
+        font-style:italic;
+        font-size:15px;
+        background-color:GhostWhite;
+      }
+    </style>
   </head>
   <body>
-    <table>
-      <tr>
-        <td>Blog Project</td>
-        <td>
-          {% if user.is_authenticated %}
-            Welcome <a href="/accounts/profile/">{{ user.username }}</a> | 
-	<a href="/accounts/logout/">Sign Out</a>
-          {% else %}
-            <a href="/accounts/login/">Sign In</a>
-          {% endif %} 
-        </td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <td><a href="/articles/">Home</a></td>
-        <td><a href="/accounts/profile/">Profile</a></td>
-      </tr>
-    </table>
-    {% block content %}{% endblock %}
+  <div class="topbar"><h1>Blog Project</h1></div>
+  <div class="main-content">
+  {% block maincontent %}
+    <div class="login">
+      {% if user.is_authenticated %}
+        Welcome <a href="/accounts/profile/">{{ user.username }}</a> | 
+        <a href="/accounts/logout/">Sign Out</a>
+      {% else %}
+        <a href="/accounts/login/">Sign In</a>
+      {% endif %} 
+    </div>
+    <div>
+      <div class="tab">
+        <a href="/articles/">Home</a>
+      </div>
+      <div class="tab">
+        <a href="/accounts/profile/">Profile</a>
+      </div>
+    </div>
+    <br /><br />
+    <div class="content">
+      {% block content %}{% endblock %}
+    </div>
+  {% endblock %}
+  </div>
   </body>  
 </html>

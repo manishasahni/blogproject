@@ -3,34 +3,32 @@
 {% block title %}Article List{% endblock %}
 
 {% block content %}
-  <table>
-    <tr>
-      <th>Articles</th>
-      <th><a href="/articles/add/">New Article</a></th>
-    <tr>
-  </table>
+  <h2>Articles
+    <div class="add">
+      <a href="/articles/add/">New Article</a>
+    </div>
+  </h2>
+  
   {% if article_list %}
-    <table>
     {% for article in article_list.object_list %}
-      <tr>
-       <td> 
-         <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-        </td>
-      </tr>
+      <div class="item">
+       <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+      </div>
+      <br/>
     {% endfor %}
-    </table>
+    
     <div class="pagination">
       <span class="step-links">
       {% if article_list.has_previous %}
-        <a href="?page={{ article_list.previous_page_number }}">previous</a>
+        <a href="?page={{ article_list.previous_page_number }}">Prev</a>
       {% endif %}
 
       <span class="current">
-        Page {{ article_list.number }} of {{ article_list.paginator.num_pages }}.
+        Page {{ article_list.number }} of {{ article_list.paginator.num_pages }}
       </span>
 
       {% if article_list.has_next %}
-        <a href="?page={{ article_list.next_page_number }}">next</a>
+        <a href="?page={{ article_list.next_page_number }}">Next</a>
       {% endif %}
       </span>
     </div>

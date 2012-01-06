@@ -1,11 +1,8 @@
+{% extends "base.html" %}
 {% load url from future %}
-<html>
-  <head>
-    <title>Sign In</title>
-  </head>
-  <body>
-    <h1>Blog Project</h1>
-
+ 
+{% block content %}
+    <h2>Sign In</h2>
     {% if form.errors %}
     <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
@@ -26,5 +23,4 @@
       <input type="submit" value="login" />
       <input type="hidden" name="next" value="{{ next }}" />
     </form>
-  </body>
-</html>  
+{% endblock %}

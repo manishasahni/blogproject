@@ -38,18 +38,22 @@
       </tr>
     </table>
   </ form>
-  <br /><hr/>
+  <br /><hr />  
   {% for comment in comment_list %}
-    {% ifequal comment.name '' %}
-      {{ comment.user.username }}
-    {% else %}
-      {{ comment.name }}
-    {% endifequal %}  
-   on {{ comment.com_date }} said:<br />
+    <div class="item">
+      <div class="italics">
+      {% ifequal comment.name '' %}
+        {{ comment.user.username }}
+      {% else %}
+        {{ comment.name }}
+      {% endifequal %}  
+      on {{ comment.com_date }} said:
+    </div>
     {{ comment.comment_body|escape|linebreaks }}
     {% ifequal comment.user.username user.username %}
-      <br/><a href="/comments/delete/{{ comment.id }}/">Delete</a>
+      <a href="/comments/delete/{{ comment.id }}/">Delete</a>
     {% endifequal %}
-    <hr />  
+    </div>
+    <br />
   {% endfor %}
 {% endblock %}
