@@ -111,9 +111,11 @@
       <div class="tab">
         <a href="/articles/">Home</a>
       </div>
+      {% if user.is_authenticated %}
       <div class="tab">
         <a href="/accounts/profile/">Profile</a>
       </div>
+      {% endif %}
     </div>
     <br /><br />
     <div class="content">
