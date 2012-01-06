@@ -7,3 +7,4 @@ Instructions:
         ./apache/django.wsgi
         ./httpd.conf
         ./settings.py
+    3. Replace database configuration in ./settings.py file with the appropriate parameters.
